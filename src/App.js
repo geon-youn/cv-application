@@ -50,7 +50,9 @@ export default function App() {
                 {educationalExperiences[0].map((id) => {
                     return (
                         <div className="educationalEntry" key={id}>
-                            <EducationalExperience editing={editing}></EducationalExperience>
+                            <EducationalExperience
+                                editing={editing}
+                            ></EducationalExperience>
                             <button
                                 onClick={() => {
                                     handleRemoveEducationalExperience(id);
@@ -67,7 +69,9 @@ export default function App() {
                 {practicalExperiences[0].map((id) => {
                     return (
                         <div className="practicalEntry" key={id}>
-                            <PracticalExperience editing={editing}></PracticalExperience>
+                            <PracticalExperience
+                                editing={editing}
+                            ></PracticalExperience>
                             <button
                                 onClick={() => {
                                     handleRemovePracticalExperience(id);
@@ -86,24 +90,3 @@ export default function App() {
         </>
     );
 }
-
-/**
- * Section:
- *  - General information:
- *      - Name
- *      - Email
- *      - Phone number
- *
- *  - Educational experience:
- *      - School name
- *      - Title of study
- *      - Date of study
- *
- * - Practical experience:
- *      - Company name
- *      - Position title
- *      - Main tasks of your jobs
- *      - Date from and until when you worked for the company
- *
- * Edit and submit button for each section or for the whole CV
- */
