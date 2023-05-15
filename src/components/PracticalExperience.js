@@ -62,7 +62,7 @@ export default function PracticalExperience({ editing, id }) {
                         }}
                     />
                 </div>
-                
+
                 <div>
                     <label htmlFor={'pe-date-to-' + id}>Date To</label>
                     <input
@@ -77,6 +77,17 @@ export default function PracticalExperience({ editing, id }) {
             </>
         );
     } else {
-        return;
+        return (
+            <>
+                <div className="pe-main">
+                    <div className="job">{info.company} | {info.position}</div>
+                    <div className="date">
+                        {info.dateFrom}{' '}
+                        {info.dateFrom && info.dateTo ? '-' : ''} {info.dateTo}
+                    </div>
+                </div>
+                <div className="pe-sub">{info.tasks}</div>
+            </>
+        );
     }
 }
