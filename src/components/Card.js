@@ -7,10 +7,10 @@ export default function Card({
     bot,
     children,
 }) {
-    return (
-        <>
-            {children}
-            {editing ? (
+    if (editing) {
+        return (
+            <div className="input-fields">
+                {children}
                 <div className="buttons">
                     <button
                         onClick={() => {
@@ -50,7 +50,8 @@ export default function Card({
                         Move Down
                     </button>
                 </div>
-            ) : null}
-        </>
-    );
+            </div>
+        );
+    }
+    return <> {children} </>;
 }

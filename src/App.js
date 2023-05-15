@@ -3,7 +3,7 @@ import GeneralInformation from './components/GeneralInformation';
 import { useState } from 'react';
 import PracticalExperience from './components/PracticalExperience';
 import Card from './components/Card';
-import './styles/App.css'
+import './styles/App.css';
 
 export default function App() {
     const [educationalExperiences, setEducationalExperiences] = useState([
@@ -71,121 +71,148 @@ export default function App() {
             <div className="general">
                 <GeneralInformation editing={editing}></GeneralInformation>
             </div>
-            <div className="educational">
-                {educationalExperiences[0].map((id, idx) => {
-                    return (
-                        <div className="educationalEntry" key={id}>
-                            <Card
-                                editing={editing}
-                                handleAdd={(above) => {
-                                    handleAdd(
-                                        idx,
-                                        above,
-                                        educationalExperiences,
-                                        setEducationalExperiences
-                                    );
-                                }}
-                                handleRemove={() => {
-                                    handleRemove(
-                                        id,
-                                        educationalExperiences,
-                                        setEducationalExperiences
-                                    );
-                                }}
-                                handleMove={(up) => {
-                                    handleMove(
-                                        idx,
-                                        up,
-                                        educationalExperiences,
-                                        setEducationalExperiences
-                                    );
-                                }}
-                                top={idx === 0}
-                                bot={
-                                    idx === educationalExperiences[0].length - 1
-                                }
-                            >
-                                <EducationalExperience
-                                    editing={editing}
-                                    id={id}
-                                ></EducationalExperience>
-                            </Card>
-                        </div>
-                    );
-                })}
-                {educationalExperiences[0].length === 0 && editing ? (
-                    <button
-                        onClick={() =>
-                            handleAdd(
-                                0,
-                                false,
-                                educationalExperiences,
-                                setEducationalExperiences
-                            )
-                        }
-                    >
-                        Add Educational Experience
-                    </button>
-                ) : null}
+            {educationalExperiences[0].length === 0 && !editing ? null : (
+                <div className="educational">
+                    {educationalExperiences[0].length === 0 ? null : (
+                        <>
+                            <div className="title">Education</div>
+                            <hr />{' '}
+                        </>
+                    )}
+                    <div className="educational-entries">
+                        {educationalExperiences[0].map((id, idx) => {
+                            return (
+                                <div className="educational-entry" key={id}>
+                                    <Card
+                                        editing={editing}
+                                        handleAdd={(above) => {
+                                            handleAdd(
+                                                idx,
+                                                above,
+                                                educationalExperiences,
+                                                setEducationalExperiences
+                                            );
+                                        }}
+                                        handleRemove={() => {
+                                            handleRemove(
+                                                id,
+                                                educationalExperiences,
+                                                setEducationalExperiences
+                                            );
+                                        }}
+                                        handleMove={(up) => {
+                                            handleMove(
+                                                idx,
+                                                up,
+                                                educationalExperiences,
+                                                setEducationalExperiences
+                                            );
+                                        }}
+                                        top={idx === 0}
+                                        bot={
+                                            idx ===
+                                            educationalExperiences[0].length - 1
+                                        }
+                                    >
+                                        <EducationalExperience
+                                            editing={editing}
+                                            id={id}
+                                        ></EducationalExperience>
+                                    </Card>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {educationalExperiences[0].length === 0 && editing ? (
+                        <button
+                            onClick={() =>
+                                handleAdd(
+                                    0,
+                                    false,
+                                    educationalExperiences,
+                                    setEducationalExperiences
+                                )
+                            }
+                        >
+                            Add Educational Experience
+                        </button>
+                    ) : null}
+                </div>
+            )}
+            {practicalExperiences[0].length === 0 && !editing ? null : (
+                <div className="practical">
+                    {practicalExperiences[0].length === 0 ? null : (
+                        <>
+                            <div className="title">Practical</div>
+                            <hr />{' '}
+                        </>
+                    )}
+                    <div className="practical-entries">
+                        {practicalExperiences[0].map((id, idx) => {
+                            return (
+                                <div className="practical-entry" key={id}>
+                                    <Card
+                                        editing={editing}
+                                        handleAdd={(above) => {
+                                            handleAdd(
+                                                idx,
+                                                above,
+                                                practicalExperiences,
+                                                setPracticalExperiences
+                                            );
+                                        }}
+                                        handleRemove={() => {
+                                            handleRemove(
+                                                id,
+                                                practicalExperiences,
+                                                setPracticalExperiences
+                                            );
+                                        }}
+                                        handleMove={(up) => {
+                                            handleMove(
+                                                idx,
+                                                up,
+                                                practicalExperiences,
+                                                setPracticalExperiences
+                                            );
+                                        }}
+                                        top={idx === 0}
+                                        bot={
+                                            idx ===
+                                            practicalExperiences[0].length - 1
+                                        }
+                                    >
+                                        <PracticalExperience
+                                            editing={editing}
+                                            id={id}
+                                        ></PracticalExperience>
+                                    </Card>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    {practicalExperiences[0].length === 0 && editing ? (
+                        <button
+                            onClick={() =>
+                                handleAdd(
+                                    0,
+                                    false,
+                                    practicalExperiences,
+                                    setPracticalExperiences
+                                )
+                            }
+                        >
+                            Add Practical Experience
+                        </button>
+                    ) : null}
+                </div>
+            )}
+            <div className="toggle-edit">
+                <button onClick={handleEditClick}>
+                    {editing ? 'Submit' : 'Edit'}
+                </button>
             </div>
-            <div className="practical">
-                {practicalExperiences[0].map((id, idx) => {
-                    return (
-                        <div className="practicalEntry" key={id}>
-                            <Card
-                                editing={editing}
-                                handleAdd={(above) => {
-                                    handleAdd(
-                                        idx,
-                                        above,
-                                        practicalExperiences,
-                                        setPracticalExperiences
-                                    );
-                                }}
-                                handleRemove={() => {
-                                    handleRemove(
-                                        id,
-                                        practicalExperiences,
-                                        setPracticalExperiences
-                                    );
-                                }}
-                                handleMove={(up) => {
-                                    handleMove(
-                                        idx,
-                                        up,
-                                        practicalExperiences,
-                                        setPracticalExperiences
-                                    );
-                                }}
-                                top={idx === 0}
-                                bot={idx === practicalExperiences[0].length - 1}
-                            >
-                                <PracticalExperience
-                                    editing={editing}
-                                    id={id}
-                                ></PracticalExperience>
-                            </Card>
-                        </div>
-                    );
-                })}
-                {practicalExperiences[0].length === 0 && editing ? (
-                    <button
-                        onClick={() =>
-                            handleAdd(
-                                0,
-                                false,
-                                practicalExperiences,
-                                setPracticalExperiences
-                            )
-                        }
-                    >
-                        Add Practical Experience
-                    </button>
-                ) : null}
-            </div>
-            <button onClick={handleEditClick}>
-                {editing ? 'Submit' : 'Edit'}
-            </button>
         </>
     );
 }
