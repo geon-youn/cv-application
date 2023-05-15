@@ -6,10 +6,10 @@ import Card from './components/Card';
 
 export default function App() {
     const [educationalExperiences, setEducationalExperiences] = useState([
-        [],
-        0,
+        [0],
+        1,
     ]);
-    const [practicalExperiences, setPracticalExperiences] = useState([[], 0]);
+    const [practicalExperiences, setPracticalExperiences] = useState([[0], 1]);
     const [editing, setEditing] = useState(true);
 
     function handleEditClick() {
