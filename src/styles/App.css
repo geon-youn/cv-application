@@ -1,19 +1,83 @@
-html, body {
-    margin: 0;
+html,
+body {
+    margin: 2% 5%;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    appearance: none;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.general,
+.educational,
+.practical {
+    margin: 0;
 }
 
 .general {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: center;
 }
 
-.educational {
-
+.educational-entry, .practical-entry {
+    padding: 1rem;
 }
 
-.practical {
-
+.input-fields {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field > label {
+    font-size: 0.8rem;
+}
+
+.buttons {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ee-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pe-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name {
+    font-size: 2rem;
+}
+
+.title {
+    font-size: 1.2rem;
+}
+
+.toggle-edit {
+    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
