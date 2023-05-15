@@ -1,9 +1,17 @@
-export default function Card({ editing, handleAdd, handleRemove, handleMove, top, bot, children }) {
+export default function Card({
+    editing,
+    handleAdd,
+    handleRemove,
+    handleMove,
+    top,
+    bot,
+    children,
+}) {
     return (
         <>
             {children}
             {editing ? (
-                <>
+                <div className="buttons">
                     <button
                         onClick={() => {
                             handleAdd(true);
@@ -41,7 +49,7 @@ export default function Card({ editing, handleAdd, handleRemove, handleMove, top
                     >
                         Move Down
                     </button>
-                </>
+                </div>
             ) : null}
         </>
     );
