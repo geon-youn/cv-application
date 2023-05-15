@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
+import InputField from './InputField';
 
 export default function PracticalExperience({ editing, id }) {
     const [info, setInfo] = useState({
         company: '',
         position: '',
-        tasks: '',
+        tasks: ['', '', ''],
         dateFrom: '',
         dateTo: '',
     });
@@ -12,81 +13,96 @@ export default function PracticalExperience({ editing, id }) {
     function handleInfo(type, value) {
         setInfo({ ...info, [type]: value });
     }
+
+    function handleTask(idx, value) {
+        setInfo({
+            ...info,
+            tasks: [
+                ...info.tasks.slice(0, idx),
+                value,
+                ...info.tasks.slice(idx + 1),
+            ],
+        });
+    }
+
     if (editing) {
         return (
             <>
-                <div className='input-field'>
-                    <label htmlFor={'pe-company-' + id}>Company Name</label>
-                    <input
-                        type="text"
-                        id={'pe-company-' + id}
-                        value={info.company}
-                        onChange={(e) => {
-                            handleInfo('company', e.target.value);
-                        }}
-                    />
-                </div>
+                <InputField
+                    htmlFor={'pe-company-' + id}
+                    value={info.company}
+                    handleChange={(e) => {
+                        handleInfo('company', e.target.value);
+                    }}
+                    label="Company name"
+                ></InputField>
 
-                <div className='input-field'>
-                    <label htmlFor={'pe-position-' + id}>Position Title</label>
-                    <input
-                        type="text"
-                        id={'pe-position-' + id}
-                        value={info.position}
-                        onChange={(e) => {
-                            handleInfo('position', e.target.value);
-                        }}
-                    />
-                </div>
+                <InputField
+                    htmlFor={'pe-position-' + id}
+                    value={info.position}
+                    handleChange={(e) => {
+                        handleInfo('position', e.target.value);
+                    }}
+                    label="Position title"
+                ></InputField>
 
-                <div className='input-field'>
-                    <label htmlFor={'pe-tasks-' + id}>Main Tasks</label>
-                    <input
-                        type="text"
-                        id={'pe-tasks-' + id}
-                        value={info.tasks}
-                        onChange={(e) => {
-                            handleInfo('tasks', e.target.value);
-                        }}
-                    />
-                </div>
+                {info.tasks.map((task, idx) => {
+                    return (
+                        <Fragment key={`${id - idx}`}>
+                            <InputField
+                                htmlFor={'pe-tasks-' + id + idx}
+                                value={task}
+                                handleChange={(e) => {
+                                    handleTask(idx, e.target.value);
+                                }}
+                                label={`Task #${idx + 1}`}
+                            ></InputField>
+                        </Fragment>
+                    );
+                })}
 
-                <div className='input-field'>
-                    <label htmlFor={'pe-date-from-' + id}>Date From</label>
-                    <input
-                        type="text"
-                        id={'pe-date-from-' + id}
-                        value={info.dateFrom}
-                        onChange={(e) => {
-                            handleInfo('dateFrom', e.target.value);
-                        }}
-                    />
-                </div>
+                <InputField
+                    htmlFor={'pe-date-from-' + id}
+                    value={info.dateFrom}
+                    handleChange={(e) => {
+                        handleInfo('dateFrom', e.target.value);
+                    }}
+                    label="Since"
+                ></InputField>
 
-                <div className='input-field'>
-                    <label htmlFor={'pe-date-to-' + id}>Date To</label>
-                    <input
-                        type="text"
-                        id={'pe-date-to-' + id}
-                        value={info.dateTo}
-                        onChange={(e) => {
-                            handleInfo('dateTo', e.target.value);
-                        }}
-                    />
-                </div>
+                <InputField
+                    htmlFor={'pe-date-to-' + id}
+                    value={info.dateTo}
+                    handleChange={(e) => {
+                        handleInfo('dateTo', e.target.value);
+                    }}
+                    label="Until"
+                ></InputField>
             </>
         );
     } else {
         return (
             <>
                 <div className="pe-main">
-                    <div className="job">{info.company} {info.company && info.position ? '|' : ''} {info.position}</div>
+                    <div className="job">
+                        <strong>{info.company}</strong>{' '}
+                        {info.company && info.position ? '|' : ''}{' '}
+                        <em>{info.position}</em>
+                    </div>
                     <div className="date">
                         {info.dateFrom}{' '}
                         {info.dateFrom && info.dateTo ? '-' : ''} {info.dateTo}
                     </div>
                 </div>
-                <div className="pe-sub">{info.tasks}</div>
+                <div className="pe-sub">
+                    <ul>
+                        {info.tasks
+                            .filter((task) => task)
+                            .map((task, idx) => {
+                                return <li key={idx}>{task}</li>;
+                            })}
+                    </ul>
+                </div>
             </>
         );
     }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import InputField from './InputField';
 
 export default function GeneralInformation({ editing }) {
     const [info, setInfo] = useState({
@@ -14,35 +15,26 @@ export default function GeneralInformation({ editing }) {
     if (editing) {
         return (
             <>
-                <div className="input-field">
-                    <label htmlFor="name">Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        onChange={(e) => handleInfo('name', e.target.value)}
-                        value={info.name}
-                    />
-                </div>
+                <InputField
+                    htmlFor="name"
+                    value={info.name}
+                    handleChange={(e) => handleInfo('name', e.target.value)}
+                    label="Name"
+                ></InputField>
 
-                <div className="input-field">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        onChange={(e) => handleInfo('email', e.target.value)}
-                        value={info.email}
-                    />
-                </div>
+                <InputField
+                    htmlFor="email"
+                    value={info.email}
+                    handleChange={(e) => handleInfo('email', e.target.value)}
+                    label="Email"
+                ></InputField>
 
-                <div className="input-field">
-                    <label htmlFor="phone">Phone Number</label>
-                    <input
-                        type="text"
-                        id="phone"
-                        onChange={(e) => handleInfo('phone', e.target.value)}
-                        value={info.phone}
-                    />
-                </div>
+                <InputField
+                    htmlFor="phone"
+                    value={info.phone}
+                    handleChange={(e) => handleInfo('phone', e.target.value)}
+                    label="Phone number"
+                ></InputField>
             </>
         );
     } else {
