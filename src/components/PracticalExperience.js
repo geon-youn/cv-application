@@ -15,7 +15,7 @@ export default function PracticalExperience({ editing, id }) {
     if (editing) {
         return (
             <>
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'pe-company-' + id}>Company Name</label>
                     <input
                         type="text"
@@ -27,7 +27,7 @@ export default function PracticalExperience({ editing, id }) {
                     />
                 </div>
 
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'pe-position-' + id}>Position Title</label>
                     <input
                         type="text"
@@ -39,7 +39,7 @@ export default function PracticalExperience({ editing, id }) {
                     />
                 </div>
 
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'pe-tasks-' + id}>Main Tasks</label>
                     <input
                         type="text"
@@ -51,7 +51,7 @@ export default function PracticalExperience({ editing, id }) {
                     />
                 </div>
 
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'pe-date-from-' + id}>Date From</label>
                     <input
                         type="text"
@@ -63,7 +63,7 @@ export default function PracticalExperience({ editing, id }) {
                     />
                 </div>
 
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'pe-date-to-' + id}>Date To</label>
                     <input
                         type="text"

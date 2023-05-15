@@ -15,7 +15,7 @@ export default function EducationalExperience({ editing, id }) {
     if (editing) {
         return (
             <>
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'ee-school-' + id}>School Name</label>
                     <input
                         type="text"
@@ -27,7 +27,7 @@ export default function EducationalExperience({ editing, id }) {
                     />
                 </div>
 
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'ee-program-' + id}>Title of Study</label>
                     <input
                         type="text"
@@ -39,7 +39,7 @@ export default function EducationalExperience({ editing, id }) {
                     />
                 </div>
 
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'ee-date-from-' + id}>Date From</label>
                     <input
                         type="text"
@@ -51,7 +51,7 @@ export default function EducationalExperience({ editing, id }) {
                     />
                 </div>
 
-                <div>
+                <div className='input-field'>
                     <label htmlFor={'ee-date-to-' + id}>Date To</label>
                     <input
                         type="text"
@@ -79,10 +79,3 @@ export default function EducationalExperience({ editing, id }) {
         );
     }
 }
-
-/**
- * - Educational experience:
- *      - School name
- *      - Title of study
- *      - Date of study
- */

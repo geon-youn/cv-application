@@ -14,7 +14,7 @@ export default function GeneralInformation({ editing }) {
     if (editing) {
         return (
             <>
-                <div>
+                <div className="input-field">
                     <label htmlFor="name">Name</label>
                     <input
                         type="text"
@@ -24,7 +24,7 @@ export default function GeneralInformation({ editing }) {
                     />
                 </div>
 
-                <div>
+                <div className="input-field">
                     <label htmlFor="email">Email</label>
                     <input
                         type="text"
@@ -34,7 +34,7 @@ export default function GeneralInformation({ editing }) {
                     />
                 </div>
 
-                <div>
+                <div className="input-field">
                     <label htmlFor="phone">Phone Number</label>
                     <input
                         type="text"
@@ -49,7 +49,10 @@ export default function GeneralInformation({ editing }) {
         return (
             <>
                 <div className="name">{info.name}</div>
-                <div className="contact">{info.email} {info.email && info.phone ? '|' : ''} {info.phone}</div>
+                <div className="contact">
+                    {info.email} {info.email && info.phone ? '|' : ''}{' '}
+                    {info.phone}
+                </div>
             </>
         );
     }
