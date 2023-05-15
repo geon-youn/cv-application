@@ -3,6 +3,7 @@ import GeneralInformation from './components/GeneralInformation';
 import { useState } from 'react';
 import PracticalExperience from './components/PracticalExperience';
 import Card from './components/Card';
+import './styles/App.css'
 
 export default function App() {
     const [educationalExperiences, setEducationalExperiences] = useState([
