@@ -72,7 +72,7 @@ export default function App() {
                     {educationalExperiences[0].length === 0 ? null : (
                         <>
                             <div className="title">Education</div>
-                            <hr />{' '}
+                            <hr />
                         </>
                     )}
                     <div className="educational-entries">
@@ -141,7 +141,7 @@ export default function App() {
                     {practicalExperiences[0].length === 0 ? null : (
                         <>
                             <div className="title">Practical</div>
-                            <hr />{' '}
+                            <hr />
                         </>
                     )}
                     <div className="practical-entries">
