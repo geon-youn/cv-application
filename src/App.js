@@ -2,6 +2,7 @@ import EducationalExperience from './components/EducationalExperience';
 import GeneralInformation from './components/GeneralInformation';
 import { useState } from 'react';
 import PracticalExperience from './components/PracticalExperience';
+import Card from './components/Card';
 
 export default function App() {
     const [educationalExperiences, setEducationalExperiences] = useState([
@@ -15,30 +16,53 @@ export default function App() {
         setEditing(!editing);
     }
 
-    function handleAddEducationalExperience() {
-        const pastKeys = educationalExperiences[0];
-        const key = educationalExperiences[1];
-        setEducationalExperiences([[...pastKeys, key], key + 1]);
+    function handleAdd(idx, above, item, setItem) {
+        const pastKeys = item[0];
+        const key = item[1];
+        if (above) {
+            setItem([
+                [...pastKeys.slice(0, idx), key, ...pastKeys.slice(idx)],
+                key + 1,
+            ]);
+        } else {
+            setItem([
+                [
+                    ...pastKeys.slice(0, idx + 1),
+                    key,
+                    ...pastKeys.slice(idx + 1),
+                ],
+                key + 1,
+            ]);
+        }
     }
 
-    function handleRemoveEducationalExperience(key) {
-        setEducationalExperiences([
-            [...educationalExperiences[0].filter((id) => id !== key)],
-            practicalExperiences[1],
-        ]);
+    function handleMove(idx, up, item, setItem) {
+        const keys = item[0];
+        if (up) {
+            setItem([
+                [
+                    ...keys.slice(0, idx - 1),
+                    ...keys.slice(idx, idx + 1),
+                    ...keys.slice(idx - 1, idx),
+                    ...keys.slice(idx + 1),
+                ],
+                item[1],
+            ]);
+        } else {
+            setItem([
+                [
+                    ...keys.slice(0, idx),
+                    ...keys.slice(idx + 1, idx + 2),
+                    ...keys.slice(idx, idx + 1),
+                    ...keys.slice(idx + 2),
+                ],
+                item[1],
+            ]);
+        }
     }
 
-    function handleAddPracticalExperience() {
-        const pastKeys = practicalExperiences[0];
-        const key = practicalExperiences[1];
-        setPracticalExperiences([[...pastKeys, key], key + 1]);
-    }
-
-    function handleRemovePracticalExperience(key) {
-        setPracticalExperiences([
-            [...practicalExperiences[0].filter((id) => id !== key)],
-            practicalExperiences[1],
-        ]);
+    function handleRemove(removeId, item, setItem) {
+        setItem([[...item[0].filter((id) => id !== removeId)], item[1]]);
     }
 
     return (
@@ -47,42 +71,114 @@ export default function App() {
                 <GeneralInformation editing={editing}></GeneralInformation>
             </div>
             <div className="educational">
-                {educationalExperiences[0].map((id) => {
+                {educationalExperiences[0].map((id, idx) => {
                     return (
                         <div className="educationalEntry" key={id}>
-                            <EducationalExperience
+                            <Card
                                 editing={editing}
-                            ></EducationalExperience>
-                            <button
-                                onClick={() => {
-                                    handleRemoveEducationalExperience(id);
+                                handleAdd={(above) => {
+                                    handleAdd(
+                                        idx,
+                                        above,
+                                        educationalExperiences,
+                                        setEducationalExperiences
+                                    );
                                 }}
+                                handleRemove={() => {
+                                    handleRemove(
+                                        id,
+                                        educationalExperiences,
+                                        setEducationalExperiences
+                                    );
+                                }}
+                                handleMove={(up) => {
+                                    handleMove(
+                                        idx,
+                                        up,
+                                        educationalExperiences,
+                                        setEducationalExperiences
+                                    );
+                                }}
+                                top={idx === 0}
+                                bot={
+                                    idx === educationalExperiences[0].length - 1
+                                }
                             >
-                                Remove
-                            </button>
+                                <EducationalExperience
+                                    editing={editing}
+                                ></EducationalExperience>
+                            </Card>
                         </div>
                     );
                 })}
-                <button onClick={handleAddEducationalExperience}>Add</button>
+                {educationalExperiences[0].length === 0 ? (
+                    <button
+                        onClick={() =>
+                            handleAdd(
+                                0,
+                                false,
+                                educationalExperiences,
+                                setEducationalExperiences
+                            )
+                        }
+                    >
+                        Add Educational Experience
+                    </button>
+                ) : null}
             </div>
             <div className="practical">
-                {practicalExperiences[0].map((id) => {
+                {practicalExperiences[0].map((id, idx) => {
                     return (
                         <div className="practicalEntry" key={id}>
-                            <PracticalExperience
+                            <Card
                                 editing={editing}
-                            ></PracticalExperience>
-                            <button
-                                onClick={() => {
-                                    handleRemovePracticalExperience(id);
+                                handleAdd={(above) => {
+                                    handleAdd(
+                                        idx,
+                                        above,
+                                        practicalExperiences,
+                                        setPracticalExperiences
+                                    );
                                 }}
+                                handleRemove={() => {
+                                    handleRemove(
+                                        id,
+                                        practicalExperiences,
+                                        setPracticalExperiences
+                                    );
+                                }}
+                                handleMove={(up) => {
+                                    handleMove(
+                                        idx,
+                                        up,
+                                        practicalExperiences,
+                                        setPracticalExperiences
+                                    );
+                                }}
+                                top={idx === 0}
+                                bot={idx === practicalExperiences[0].length - 1}
                             >
-                                Remove
-                            </button>
+                                <PracticalExperience
+                                    editing={editing}
+                                ></PracticalExperience>
+                            </Card>
                         </div>
                     );
                 })}
-                <button onClick={handleAddPracticalExperience}>Add</button>
+                {practicalExperiences[0].length === 0 ? (
+                    <button
+                        onClick={() =>
+                            handleAdd(
+                                0,
+                                false,
+                                practicalExperiences,
+                                setPracticalExperiences
+                            )
+                        }
+                    >
+                        Add Practical Experience
+                    </button>
+                ) : null}
             </div>
             <button onClick={handleEditClick}>
                 {editing ? 'Submit' : 'Edit'}
