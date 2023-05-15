@@ -106,6 +106,7 @@ export default function App() {
                             >
                                 <EducationalExperience
                                     editing={editing}
+                                    id={id}
                                 ></EducationalExperience>
                             </Card>
                         </div>
@@ -160,6 +161,7 @@ export default function App() {
                             >
                                 <PracticalExperience
                                     editing={editing}
+                                    id={id}
                                 ></PracticalExperience>
                             </Card>
                         </div>
