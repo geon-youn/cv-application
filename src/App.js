@@ -13,10 +13,6 @@ export default function App() {
     const [practicalExperiences, setPracticalExperiences] = useState([[0], 1]);
     const [editing, setEditing] = useState(true);
 
-    function handleEditClick() {
-        setEditing(!editing);
-    }
-
     function handleAdd(idx, above, item, setItem) {
         const pastKeys = item[0];
         const key = item[1];
@@ -209,7 +205,11 @@ export default function App() {
                 </div>
             )}
             <div className="toggle-edit">
-                <button onClick={handleEditClick}>
+                <button
+                    onClick={() => {
+                        setEditing(!editing);
+                    }}
+                >
                     {editing ? 'Submit' : 'Edit'}
                 </button>
             </div>
