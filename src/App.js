@@ -111,7 +111,7 @@ export default function App() {
                         </div>
                     );
                 })}
-                {educationalExperiences[0].length === 0 ? (
+                {educationalExperiences[0].length === 0 && editing ? (
                     <button
                         onClick={() =>
                             handleAdd(
@@ -165,7 +165,7 @@ export default function App() {
                         </div>
                     );
                 })}
-                {practicalExperiences[0].length === 0 ? (
+                {practicalExperiences[0].length === 0 && editing ? (
                     <button
                         onClick={() =>
                             handleAdd(
