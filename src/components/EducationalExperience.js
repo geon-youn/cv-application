@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 export default function EducationalExperience({ editing, id }) {
     const [info, setInfo] = useState({
-        school: '',
-        program: '',
-        dateFrom: '',
-        dateTo: '',
+    school: '',
+    program: '',
+    dateFrom: '',
+    dateTo: '',
     });
 
     function handleInfo(type, value) {
@@ -65,7 +65,18 @@ export default function EducationalExperience({ editing, id }) {
             </>
         );
     } else {
-        return;
+        return (
+            <>
+                <div className="ee-main">
+                    <div className="school">{info.school}</div>
+                    <div className="date">
+                        {info.dateFrom}{' '}
+                        {info.dateFrom && info.dateTo ? '-' : ''} {info.dateTo}
+                    </div>
+                </div>
+                <div className="ee-sub">{info.program}</div>
+            </>
+        );
     }
 }
 
