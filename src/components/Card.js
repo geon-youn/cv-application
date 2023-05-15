@@ -7,51 +7,54 @@ export default function Card({
     bot,
     children,
 }) {
-    if (editing) {
-        return (
-            <div className="input-fields">
-                {children}
-                <div className="buttons">
-                    <button
-                        onClick={() => {
-                            handleAdd(true);
-                        }}
-                    >
-                        Add Above
-                    </button>
-                    <button
-                        onClick={() => {
-                            handleAdd(false);
-                        }}
-                    >
-                        Add Below
-                    </button>
-                    <button
-                        onClick={() => {
-                            handleRemove();
-                        }}
-                    >
-                        Remove
-                    </button>
-                    <button
-                        onClick={() => {
-                            handleMove(true);
-                        }}
-                        disabled={top}
-                    >
-                        Move Up
-                    </button>
-                    <button
-                        onClick={() => {
-                            handleMove(false);
-                        }}
-                        disabled={bot}
-                    >
-                        Move Down
-                    </button>
+    return (
+        <>
+            {editing ? (
+                <div className="input-fields">
+                    {children}
+                    <div className="buttons">
+                        <button
+                            onClick={() => {
+                                handleAdd(true);
+                            }}
+                        >
+                            Add Above
+                        </button>
+                        <button
+                            onClick={() => {
+                                handleAdd(false);
+                            }}
+                        >
+                            Add Below
+                        </button>
+                        <button
+                            onClick={() => {
+                                handleRemove();
+                            }}
+                        >
+                            Remove
+                        </button>
+                        <button
+                            onClick={() => {
+                                handleMove(true);
+                            }}
+                            disabled={top}
+                        >
+                            Move Up
+                        </button>
+                        <button
+                            onClick={() => {
+                                handleMove(false);
+                            }}
+                            disabled={bot}
+                        >
+                            Move Down
+                        </button>
+                    </div>
                 </div>
-            </div>
-        );
-    }
-    return <> {children} </>;
+            ) : (
+                <div>{children}</div>
+            )}
+        </>
+    );
 }
