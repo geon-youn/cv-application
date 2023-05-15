@@ -80,7 +80,7 @@ export default function PracticalExperience({ editing, id }) {
         return (
             <>
                 <div className="pe-main">
-                    <div className="job">{info.company} | {info.position}</div>
+                    <div className="job">{info.company} {info.company && info.position ? '|' : ''} {info.position}</div>
                     <div className="date">
                         {info.dateFrom}{' '}
                         {info.dateFrom && info.dateTo ? '-' : ''} {info.dateTo}
