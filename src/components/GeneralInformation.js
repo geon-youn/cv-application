@@ -37,15 +37,13 @@ export default function GeneralInformation({ editing }) {
                 ></InputField>
             </>
         );
-    } else {
-        return (
-            <>
-                <div className="name">{info.name}</div>
-                <div className="contact">
-                    {info.email} {info.email && info.phone ? '|' : ''}{' '}
-                    {info.phone}
-                </div>
-            </>
-        );
     }
+    return (
+        <>
+            <div className="name">{info.name}</div>
+            <div className="contact">
+                {info.email} {info.email && info.phone ? '|' : ''} {info.phone}
+            </div>
+        </>
+    );
 }

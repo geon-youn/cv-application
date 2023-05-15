@@ -53,22 +53,21 @@ export default function EducationalExperience({ editing, id }) {
                 ></InputField>
             </>
         );
-    } else {
-        return (
-            <>
-                <div className="ee-main">
-                    <div className="school">
-                        <strong>{info.school}</strong>
-                    </div>
-                    <div className="date">
-                        {info.dateFrom}{' '}
-                        {info.dateFrom && info.dateTo ? '-' : ''} {info.dateTo}
-                    </div>
-                </div>
-                <div className="ee-sub">
-                    <em>{info.program}</em>
-                </div>
-            </>
-        );
     }
+    return (
+        <>
+            <div className="ee-main">
+                <div className="school">
+                    <strong>{info.school}</strong>
+                </div>
+                <div className="date">
+                    {info.dateFrom} {info.dateFrom && info.dateTo ? '-' : ''}{' '}
+                    {info.dateTo}
+                </div>
+            </div>
+            <div className="ee-sub">
+                <em>{info.program}</em>
+            </div>
+        </>
+    );
 }

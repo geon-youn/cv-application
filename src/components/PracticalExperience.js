@@ -80,30 +80,29 @@ export default function PracticalExperience({ editing, id }) {
                 ></InputField>
             </>
         );
-    } else {
-        return (
-            <>
-                <div className="pe-main">
-                    <div className="job">
-                        <strong>{info.company}</strong>{' '}
-                        {info.company && info.position ? '|' : ''}{' '}
-                        <em>{info.position}</em>
-                    </div>
-                    <div className="date">
-                        {info.dateFrom}{' '}
-                        {info.dateFrom && info.dateTo ? '-' : ''} {info.dateTo}
-                    </div>
-                </div>
-                <div className="pe-sub">
-                    <ul>
-                        {info.tasks
-                            .filter((task) => task)
-                            .map((task, idx) => {
-                                return <li key={idx}>{task}</li>;
-                            })}
-                    </ul>
-                </div>
-            </>
-        );
     }
+    return (
+        <>
+            <div className="pe-main">
+                <div className="job">
+                    <strong>{info.company}</strong>{' '}
+                    {info.company && info.position ? '|' : ''}{' '}
+                    <em>{info.position}</em>
+                </div>
+                <div className="date">
+                    {info.dateFrom} {info.dateFrom && info.dateTo ? '-' : ''}{' '}
+                    {info.dateTo}
+                </div>
+            </div>
+            <div className="pe-sub">
+                <ul>
+                    {info.tasks
+                        .filter((task) => task)
+                        .map((task, idx) => {
+                            return <li key={idx}>{task}</li>;
+                        })}
+                </ul>
+            </div>
+        </>
+    );
 }
